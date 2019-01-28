@@ -38,8 +38,8 @@ public class CustomerController {
 
     @RequestMapping("customer/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("product", customerService.getCustomerById(id));
-        return "productform";
+        model.addAttribute("customer", customerService.getCustomerById(id));
+        return "customerform";
     }
 
     @RequestMapping("/customer/new")
