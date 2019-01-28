@@ -1,7 +1,6 @@
 package guru.springframework.controllers;
 
 import guru.springframework.domain.Customer;
-import guru.springframework.domain.Product;
 import guru.springframework.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +43,7 @@ public class CustomerController {
 
     @RequestMapping("/customer/new")
     public String newCustomer(Model model){
-        model.addAttribute("customer", new Product());
+        model.addAttribute("customer", new Customer());
         return "customerform";
     }
 
