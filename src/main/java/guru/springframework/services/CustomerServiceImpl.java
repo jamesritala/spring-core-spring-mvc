@@ -2,12 +2,13 @@ package guru.springframework.services;
 
 import guru.springframework.domain.Customer;
 import guru.springframework.domain.Product;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
     private Map<Integer,Customer> customers;
