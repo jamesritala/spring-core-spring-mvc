@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(Integer id) {
-
+        customers.remove(id);
     }
 
     private void loadCustomers(){
