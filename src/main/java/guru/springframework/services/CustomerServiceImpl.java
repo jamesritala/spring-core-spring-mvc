@@ -5,9 +5,8 @@ import guru.springframework.domain.Product;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -19,17 +18,30 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> listAllCustomers() {
-        return null;
+        return new ArrayList<>(customers.values());
     }
 
     @Override
     public Customer getCustomerById(Integer id) {
-        return null;
+        return customers.get(id);
     }
 
     @Override
-    public Customer saveOrUpdateCustomer(Customer product) {
-        return null;
+    public Customer saveOrUpdateCustomer(Customer customer) {
+        if (customer != null){
+            if (customer.getId() == null){
+                customer.setId(getNextKey());
+            }
+            customers.put(customer.getId(), customer);
+
+            return customer;
+        } else {
+            throw new RuntimeException("Product Can't be nill");
+        }
+    }
+
+    private Integer getNextKey(){
+        return Collections.max(customers.keySet()) + 1;
     }
 
     @Override
@@ -47,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
         product1.setEmail("jay@me.com");
         product1.setPhone("0110024567");
         product1.setAddressLine1("1 Mt Zion");
-        product1.setAddressLine2("Jerusalem");
+        product1.setAddressLine2("Kings Suburb");
         product1.setCity("Jerusalem");
         product1.setState("Israel");
         product1.setZipCode("0001");
@@ -56,12 +68,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer product2 = new Customer();
         product2.setId(2);
-        product2.setFirstname("James");
-        product2.setLastname("Ritala");
-        product2.setEmail("jay@me.com");
-        product2.setPhone("0110024567");
-        product2.setAddressLine1("1 Mt Zion");
-        product2.setAddressLine2("Jerusalem");
+        product2.setFirstname("Simon");
+        product2.setLastname("Peter");
+        product2.setEmail("peter@heaven.com");
+        product2.setPhone("000000000");
+        product2.setAddressLine1("3 Mt Zion");
+        product2.setAddressLine2("Eldersville");
         product2.setCity("Jerusalem");
         product2.setState("Israel");
         product2.setZipCode("0001");
@@ -70,8 +82,8 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer product3 = new Customer();
         product3.setId(3);
-        product3.setFirstname("James");
-        product3.setLastname("Ritala");
+        product3.setFirstname("Farai");
+        product3.setLastname("Mukoma");
         product3.setEmail("jay@me.com");
         product3.setPhone("0110024567");
         product3.setAddressLine1("1 Mt Zion");
